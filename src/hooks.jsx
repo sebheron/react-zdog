@@ -123,7 +123,7 @@ export function useZdogPrimitive(primitive, children, props, ref) {
       state.current.pointerDownEventMap[colorId] = props.onPointerDown
     }
     if (props.onPointerUp) {
-      state.current.pointUpEventMap[colorId] = props.onPointerUp
+      state.current.pointerUpEventMap[colorId] = props.onPointerUp
     }
 
     return () => {
@@ -133,7 +133,7 @@ export function useZdogPrimitive(primitive, children, props, ref) {
       delete state.current.pointerEnterEventMap[colorId]
       delete state.current.pointerLeaveEventMap[colorId]
       delete state.current.pointerDownEventMap[colorId]
-      delete state.current.pointUpEventMap[colorId]
+      delete state.current.pointerUpEventMap[colorId]
     }
   }, [props])
 
