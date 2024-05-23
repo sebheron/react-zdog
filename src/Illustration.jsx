@@ -44,6 +44,7 @@ export const Illustration = React.memo(
       itemMap: {},
       clickEventMap: {},
       pointerDownEventMap: {},
+      pointerUpEventMap: {},
       pointerMoveEventMap: {},
       pointerEnterEventMap: {},
       pointerLeaveEventMap: {},
@@ -142,6 +143,14 @@ export const Illustration = React.memo(
       pointerDownEvent && pointerDownEvent(e, state.current.itemMap[colorId])
     }
 
+    const mouseUp = e => {
+      if (!pointerEvents) return
+
+      const colorId = getColor(e)
+      const pointerUpEvent = state.current.pointerUpEventMap[colorId]
+      pointerUpEvent && pointerUpEvent(e, state.current.itemMap[colorId])
+    }
+
     const prevColorId = useRef(null)
     const pointerOnObj = useRef(null)
 
@@ -197,6 +206,7 @@ export const Illustration = React.memo(
             onClick={click}
             onPointerMove={pointerMove}
             onPointerDown={mouseDown}
+            onPointerUp={mouseUp}
           />
           {state.current.illu && <stateContext.Provider value={state} children={result} />}
         </div>
