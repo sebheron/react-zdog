@@ -43,6 +43,7 @@ export const Illustration = React.memo(
       illu_ghost: undefined,
       itemMap: {},
       clickEventMap: {},
+      pointerDownEventMap: {},
       pointerMoveEventMap: {},
       pointerEnterEventMap: {},
       pointerLeaveEventMap: {},
@@ -118,15 +119,27 @@ export const Illustration = React.memo(
       state.current.illu_ghost && applyProps(state.current.illu_ghost, rest)
     }, [rest])
 
-    const click = e => {
-      if (!pointerEvents) return
-
+    const getColor = e => {
       state.current.illu_ghost && state.current.illu_ghost.updateRenderGraph()
       const coords = getMousePos(canvas.current, e, canvas_ghost.current)
       const pixel = getPixel({ ...coords, canvasContext: ghostCanvasContext })
-      const colorId = pixel.toUpperCase()
+      return pixel.toUpperCase()
+    }
+
+    const click = e => {
+      if (!pointerEvents) return
+
+      const colorId = getColor(e)
       const clickEvent = state.current.clickEventMap[colorId]
       clickEvent && clickEvent(e, state.current.itemMap[colorId])
+    }
+
+    const mouseDown = e => {
+      if (!pointerEvents) return
+
+      const colorId = getColor(e)
+      const pointerDownEvent = state.current.pointerDownEventMap[colorId]
+      pointerDownEvent && pointerDownEvent(e, state.current.itemMap[colorId])
     }
 
     const prevColorId = useRef(null)
@@ -139,10 +152,7 @@ export const Illustration = React.memo(
     const pointerMove = e => {
       if (!pointerEvents) return
 
-      state.current.illu_ghost && state.current.illu_ghost.updateRenderGraph()
-      const coords = getMousePos(canvas.current, e, canvas_ghost.current)
-      const pixel = getPixel({ ...coords, canvasContext: ghostCanvasContext })
-      const colorId = pixel.toUpperCase()
+      const colorId = getColor(e)
 
       if (colorId !== '#000000' && prevColorId.current !== colorId && pointerOnObj.current !== colorId) {
         const pointerEnterEvent = state.current.pointerEnterEventMap[colorId]
@@ -186,6 +196,7 @@ export const Illustration = React.memo(
             height={size.height}
             onClick={click}
             onPointerMove={pointerMove}
+            onPointerDown={mouseDown}
           />
           {state.current.illu && <stateContext.Provider value={state} children={result} />}
         </div>

@@ -119,6 +119,9 @@ export function useZdogPrimitive(primitive, children, props, ref) {
     if (props.onPointerLeave) {
       state.current.pointerLeaveEventMap[colorId] = props.onPointerLeave
     }
+    if (props.onPointerDown) {
+      state.current.pointerDownEventMap[colorId] = props.onPointerDown
+    }
 
     return () => {
       delete state.current.itemMap[colorId]
@@ -126,6 +129,7 @@ export function useZdogPrimitive(primitive, children, props, ref) {
       delete state.current.pointerMoveEventMap[colorId]
       delete state.current.pointerEnterEventMap[colorId]
       delete state.current.pointerLeaveEventMap[colorId]
+      delete state.current.pointerDownEventMap[colorId]
     }
   }, [props])
 
