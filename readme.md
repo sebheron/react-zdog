@@ -6,9 +6,9 @@ Adds ability to disable pointer events on specific zdog elements. Largely untest
   <img src="https://imgur.com/THk95vU.png" width="240" />
 </p>
 
-    npm install zdog react-zdog
+    npm install zdog react-zdog-alt
     # or
-    yarn add zdog react-zdog
+    yarn add zdog react-zdog=alt
 
 ![npm](https://img.shields.io/npm/v/react-zdog.svg?style=flat-square) ![npm](https://img.shields.io/npm/dt/react-zdog.svg?style=flat-square)
 
