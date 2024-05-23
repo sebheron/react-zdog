@@ -1,3 +1,7 @@
+### Forked from [react-zdog](https://github.com/pmndrs/react-zdog)
+
+Adds ability to disable pointer events on specific zdog elements. Largely untested, recommended to use the original package.
+
 <p align="center">
   <img src="https://imgur.com/THk95vU.png" width="240" />
 </p>

@@ -58,6 +58,7 @@ export function useZdogPrimitive(primitive, children, props, ref) {
       rightFace: colorId,
       topFace: colorId,
       bottomFace: colorId,
+      visible: props?.pointerEvents ?? props?.visible,
     }
   }, [colorId, props])
 
