@@ -2,6 +2,7 @@
 
 - Adds ability to disable pointer events on specific zdog elements.
 - Adds pointer down/up event to zdog elements.
+- Supports zfont
 
 Largely untested, recommended to use the original package.
 
