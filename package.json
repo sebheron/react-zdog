@@ -30,7 +30,8 @@
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "resize-observer-polyfill": "^1.5.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "zfont": "^1.2.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
